@@ -26,9 +26,8 @@ airline_data =  pd.read_csv('https://cf-courses-data.s3.us.cloud-object-storage.
 
 # List of years 
 year_list = [i for i in range(2005, 2021, 1)]
+Airline_list = [q for q in range(['UnitedAirline', 'SouthWest', 'JetBlue', 'Emirates'])
 
-#list of food 
-Airlines_list = [q for q, in range('United', 'Southwest','Emirates','Jetblue','VirginAirline')]
 """Compute graph data for creating yearly airline performance report 
 
 Function that takes airline data as input and create 5 dataframes based on the grouping condition to be used for plottling charts and grphs.
@@ -75,8 +74,8 @@ def compute_data_choice_2(df):
 
 
 # Application layout
-app.layout = html.Div(children=[html.h1({'title':'US domestic Airline Flights Performance'}),
-                                # style = {'textalign':'center','color':'#503D36','Font-size': 24}}),
+app.layout = html.Div(children=[html.h1({'title':'US domestic Airline Flights Performance',
+                                 style = {'textalign':'center','color':'#503D36','Font-size': 24}}),
                                 # TASK1: Add title to the dashboard
                                 # Enter your code below. Make sure you have correct formatting.
     
@@ -105,16 +104,23 @@ app.layout = html.Div(children=[html.h1({'title':'US domestic Airline Flights Pe
                                             html.H2('Choose Year:', style={'margin-right': '2em'})
                                             ]
                                         ),
-                                        dcc.Dropdown(id=['input-year', 'input-Airlines',
+                                        dcc.Dropdown(id=['input-year', 'input-Airlines'],
+                                                     
+                                                     ##added another drop-down 
+                                                     
                                                      # Update dropdown values using list comphrehension
-                                                     #options=[{'label': i, 'value': i} for i in year_list],
-                                                     options=[{'lable': q, 'value': q} for q in Airline_list],
+                                                     options1=[{'label': i, 'value': i} for i in year_list],
+                                                     options2=[{'lable': q, 'value': q} for q in Airline_list],
                                                     ],
                                                      placeholder=["Select a year", "select an Airline"],
+                                                     #created a place holder list 
+                                                     
                                                      style={'width':'80%', 'padding':'3px', 'font-size': '20px', 'text-align-last' : 'center'}),
                                             # Place them next to each other using the division style
                                             ], style={'display': 'flex'}), multi=True)  
+                                            #enabled multi dropdown option
                                           ]),
+                                            
                                 
                                 # Add Computed graphs
                                 # REVIEW3: Observe how we add an empty division and providing an id that will be updated during callback
@@ -138,11 +144,11 @@ app.layout = html.Div(children=[html.h1({'title':'US domestic Airline Flights Pe
 # TASK4: Add 5 ouput components
 # Enter your code below. Make sure you have correct formatting.
 @app.callback( [....],
-               [Output(component_id='plot1', component_property='children1'),
-               Output(component_id='plot2', component_property='children2'),
-               Output(component_id='plot3', component_property='children3'),
-               Output(component_id='plot4', component_property='children4'),
-               Output(component_id='plot5', component_property='children5')
+               [Output(component_id='plot1', component_property='children'),
+               Output(component_id='plot2', component_property='children'),
+               Output(component_id='plot3', component_property='children'),
+               Output(component_id='plot4', component_property='children'),
+               Output(component_id='plot5', component_property='children')
                ])
 @app.callback( [....],
                [Input(component_id='input-type', component_property='value'),
@@ -157,7 +163,7 @@ def get_graph(chart, year, children1, children2, children3, chidren4, children5)
       
         # Select data
         df =  airline_data[airline_data['Year']==int(year)]
-       
+        
         if chart == 'OPT1':
             # Compute required information for creating graph from the data
             bar_data, line_data, div_data, map_data, tree_data = compute_data_choice_1(df)
@@ -222,4 +228,5 @@ def get_graph(chart, year, children1, children2, children3, chidren4, children5)
 
 # Run the app
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(port=443, debug=True)
+                
