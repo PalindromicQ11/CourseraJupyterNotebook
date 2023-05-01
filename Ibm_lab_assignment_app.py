@@ -92,9 +92,15 @@ app.layout = html.Div(children=[html.h1('US domestic Airline Flights Performance
                                         ),
                                         # TASK2: Add a dropdown
                                         # Enter your code below. Make sure you have correct formatting.
-                                        
+                                        dcc.Dropdown(id=['input-year', 'input-Airlines'],
+                                                    options1=[{'label': i, 'value': i} for i in year_list],
+                                                    options2=[{'label': q, 'value': q} for q in Airline_list],
+                                                    placeholder = ["Select a year", "select an Airline"],
+                                                    style={'width':'80%', 'padding':'3px', 'font-size': '20px', 'text-align-last' : 'center'}),
                                     # Place them next to each other using the division style
-                                    ], style={'display':'flex'}),
+                                       style=({'display':'flex'}, multi=True)
+                                    ])
+                                      
                                     
                                    # Add next division 
                                    html.Div([
@@ -111,13 +117,13 @@ app.layout = html.Div(children=[html.h1('US domestic Airline Flights Performance
                                                      # Update dropdown values using list comphrehension
                                                      options1=[{'label': i, 'value': i} for i in year_list],
                                                      options2=[{'lable': q, 'value': q} for q in Airline_list],
-                                                    ],
+                                                    
                                                      placeholder=["Select a year", "select an Airline"],
                                                      #created a place holder list 
                                                      
-                                                     style={'width':'80%', 'padding':'3px', 'font-size': '20px', 'text-align-last' : 'center'}),
+                                                     style={'width':'80%', 'padding':'3px', 'font-size': '20px', 'text-align-last' : 'center'},
                                             # Place them next to each other using the division style
-                                            ], style={'display': 'flex'}), multi=True)  
+                                             style=({'display': 'flex'}), multi=True)  
                                             #enabled multi dropdown option
                                           ]),
                                             
@@ -149,7 +155,7 @@ app.layout = html.Div(children=[html.h1('US domestic Airline Flights Performance
                Output(component_id='plot3', component_property='children'),
                Output(component_id='plot4', component_property='children'),
                Output(component_id='plot5', component_property='children')
-               ]),
+               ],
                [Input(component_id='input-type', component_property='value'),
                 Input(component_id='input-year', component_property='value')],
                # REVIEW4: Holding output state till user enters all the form information. In this case, it will be chart type and year
