@@ -96,9 +96,10 @@ app.layout = html.Div(children=[html.h1('US domestic Airline Flights Performance
                                                     options1=[{'label': i, 'value': i} for i in year_list],
                                                     options2=[{'label': q, 'value': q} for q in Airline_list],
                                                     placeholder = ["Select a year", "select an Airline"],
-                                                    style={'width':'80%', 'padding':'3px', 'font-size': '20px', 'text-align-last' : 'center'}),
+                                                    style={'width':'80%', 'padding':'3px', 'font-size': '20px', 'text-align-last' : 'center'},
                                     # Place them next to each other using the division style
-                                       style=({'display':'flex'}, multi=True)
+                                       style=({'display':'flex'}, 
+                                       multi=True)
                                     ])
                                       
                                     
@@ -123,7 +124,8 @@ app.layout = html.Div(children=[html.h1('US domestic Airline Flights Performance
                                                      
                                                      style={'width':'80%', 'padding':'3px', 'font-size': '20px', 'text-align-last' : 'center'},
                                             # Place them next to each other using the division style
-                                             style=({'display': 'flex'}), multi=True)  
+                                             style={'display': 'flex'}), 
+                                             multi=True)  
                                             #enabled multi dropdown option
                                           ]),
                                             
