@@ -74,8 +74,8 @@ def compute_data_choice_2(df):
 
 
 # Application layout
-app.layout = html.Div(children=[html.h1({'title':'US domestic Airline Flights Performance',
-                                 style = {'textalign':'center','color':'#503D36','Font-size': 24}}),
+app.layout = html.Div(children=[html.h1('US domestic Airline Flights Performance',
+                                 style = {'textalign':'center','color':'#503D36','Font-size': 24}),
                                 # TASK1: Add title to the dashboard
                                 # Enter your code below. Make sure you have correct formatting.
     
@@ -149,13 +149,14 @@ app.layout = html.Div(children=[html.h1({'title':'US domestic Airline Flights Pe
                Output(component_id='plot3', component_property='children'),
                Output(component_id='plot4', component_property='children'),
                Output(component_id='plot5', component_property='children')
-               ])
-@app.callback( [....],
+               ]),
                [Input(component_id='input-type', component_property='value'),
                 Input(component_id='input-year', component_property='value')],
                # REVIEW4: Holding output state till user enters all the form information. In this case, it will be chart type and year
-               [State("plot1", 'children'), State("plot2", "children"),
-                State("plot3", "children"), State("plot4", "children"),
+               [State("plot1", 'children'),
+                State("plot2", "children"),
+                State("plot3", "children"), 
+                State("plot4", "children"),
                 State("plot5", "children")
                ])
 # Add computation to callback function and return graph
