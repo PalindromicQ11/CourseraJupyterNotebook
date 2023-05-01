@@ -231,3 +231,6 @@ def get_graph(chart, year, children1, children2, children3, chidren4, children5)
 if __name__ == '__main__':
     app.run_server(port=443, debug=True)
                 
+MTFO!
+                
+                
